@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bingen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>BINGEN</h1>
+  </header>
+
+  <main class="gallery">
+    <img src="bilder/bingen1.jpg" alt="Bingen 1">
+    <img src="bilder/bingen2.jpg" alt="Bingen 2">
+    <img src="bilder/bingen3.jpg" alt="Bingen 3">
+    <img src="bilder/bingen4.jpg" alt="Bingen 4">
+    <img src="bilder/bingen5.jpg" alt="Bingen 5">
+    <!-- Weitere Bilder -->
+  </main>
+
+  <!-- Overlay für große Bildanzeige -->
+  <div id="overlay" class="overlay" onclick="closeOverlay()">
+    <img id="overlay-img" src="" alt="">
+    <a id="download-btn" href="" download>Bild herunterladen</a>
+  </div>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+    const overlayImg = document.getElementById("overlay-img");
+    const downloadBtn = document.getElementById("download-btn");
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation(); // verhindert, dass das overlay sofort wieder schließt
+        overlay.style.display = 'flex';
+        overlayImg.src = img.src;
+        downloadBtn.href = img.src;
+      });
+    });
+
+    function closeOverlay() {
+      overlay.style.display = 'none';
+      overlayImg.src = "";
+    }
+  </script>
+</body>
+</html>
